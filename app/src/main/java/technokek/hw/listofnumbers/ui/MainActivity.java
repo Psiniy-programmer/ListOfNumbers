@@ -1,7 +1,10 @@
-package technokek.hw.listofnumbers;
+package technokek.hw.listofnumbers.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import technokek.hw.listofnumbers.R;
+import technokek.hw.listofnumbers.ui.fragments.SecondFragment;
 
 public class MainActivity extends AppCompatActivity {
 

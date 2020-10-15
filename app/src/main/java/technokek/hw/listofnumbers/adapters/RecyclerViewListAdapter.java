@@ -1,6 +1,5 @@
-package technokek.hw.listofnumbers;
+package technokek.hw.listofnumbers.adapters;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +7,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-    private Integer countItems;
+import java.util.List;
 
-    public RecyclerViewListAdapter(int mCountItems) {
-        this.countItems = mCountItems;
+import technokek.hw.listofnumbers.R;
+import technokek.hw.listofnumbers.holders.RecyclerViewHolder;
+import technokek.hw.listofnumbers.models.NumbersModel;
+
+public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+    private List<NumbersModel> mData;
+
+    public RecyclerViewListAdapter(List<NumbersModel> data) {
+        this.mData = data;
     }
 
     @Override
@@ -29,16 +34,13 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        holder.getView().setText(String.valueOf(position+1));
-        if (position % 2 == 0) {
-            holder.getView().setTextColor(Color.RED);
-        } else {
-            holder.getView().setTextColor(Color.BLUE);
-        }
+        NumbersModel model = mData.get(position);
+        holder.getView().setText(String.valueOf(model.getValue()));
+        holder.getView().setTextColor(model.getColor());
     }
 
     @Override
     public int getItemCount() {
-        return countItems;
+        return mData.size();
     }
 }
