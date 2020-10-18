@@ -42,7 +42,6 @@ public class MainFragment extends Fragment  {
             Activity activity = getActivity();
             assert activity != null;
             ((MainActivity) activity).openFragment(model);
-
         });
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), getSpanCount(), RecyclerView.VERTICAL, false));
