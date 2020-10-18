@@ -15,9 +15,11 @@ import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     private List<NumbersModel> mData;
+    private final clickerInterface inter;
 
-    public RecyclerViewListAdapter(List<NumbersModel> data) {
+    public RecyclerViewListAdapter(List<NumbersModel> data, clickerInterface inter) {
         this.mData = data;
+        this.inter = inter;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHo
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
-        return new RecyclerViewHolder(view);
+        return new RecyclerViewHolder(view, inter);
     }
 
     @Override
@@ -37,10 +39,15 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHo
         NumbersModel model = mData.get(position);
         holder.getView().setText(String.valueOf(model.getValue()));
         holder.getView().setTextColor(model.getColor());
+        holder.onBind(model);
     }
 
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    public interface clickerInterface {
+        void onItemClick(NumbersModel model);
     }
 }
