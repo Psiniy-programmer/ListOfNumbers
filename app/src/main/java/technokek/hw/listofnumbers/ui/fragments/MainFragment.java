@@ -69,7 +69,9 @@ public class MainFragment extends Fragment {
     }
 
     private int getSpanCount() {
-        return (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? 3 : 4;
+        final int portraitSpanCount = 3;
+        final int landscapeSpanCount = 4;
+        return (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? portraitSpanCount : landscapeSpanCount;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

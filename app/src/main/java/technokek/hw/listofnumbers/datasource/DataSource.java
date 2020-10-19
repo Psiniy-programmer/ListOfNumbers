@@ -17,7 +17,8 @@ public class DataSource {
 
     public DataSource() {
         list = new ArrayList<>();
-        for (int i = 1; i < 101; i++) {
+        final int countElements = 100;
+        for (int i = 1; i < countElements + 1; i++) {
             list.add(new NumbersModel(i, getColor(i)));
         }
     }
