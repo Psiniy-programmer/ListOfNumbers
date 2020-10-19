@@ -1,6 +1,6 @@
 package technokek.hw.listofnumbers.ui.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,21 +18,24 @@ import java.util.List;
 
 import technokek.hw.listofnumbers.R;
 import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter;
+import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter.clickerInterface;
 import technokek.hw.listofnumbers.datasource.DataSource;
 import technokek.hw.listofnumbers.models.NumbersModel;
-import technokek.hw.listofnumbers.ui.MainActivity;
 
 public class MainFragment extends Fragment {
 
     private List<NumbersModel> numbers;
 
+    private RecyclerViewListAdapter.clickerInterface clicker;
+
     private RecyclerViewListAdapter adapter;
 
     @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
         numbers = DataSource.getInstance().getData();
-        adapter = new RecyclerViewListAdapter(numbers, ((MainActivity) activity)::openFragment);
+        clicker = (clickerInterface) context;
+        adapter = new RecyclerViewListAdapter(numbers, model -> clicker.onItemClick(model));
     }
 
     @Override

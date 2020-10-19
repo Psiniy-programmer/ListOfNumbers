@@ -9,9 +9,11 @@ import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class DataSource {
 
-    private static DataSource ourInstance = new DataSource();
-
     private final List<NumbersModel> list;
+
+    public static class DataSourceHolder {
+        private final static DataSource instance = new DataSource();
+    }
 
     public DataSource() {
         list = new ArrayList<>();
@@ -25,10 +27,7 @@ public class DataSource {
     }
 
     public static DataSource getInstance() {
-        if (ourInstance == null) {
-            ourInstance = new DataSource();
-        }
-        return ourInstance;
+        return DataSourceHolder.instance;
     }
 
     public List<NumbersModel> getData() {

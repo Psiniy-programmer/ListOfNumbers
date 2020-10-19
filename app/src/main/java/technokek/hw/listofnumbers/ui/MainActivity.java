@@ -5,11 +5,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import technokek.hw.listofnumbers.R;
+import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter;
 import technokek.hw.listofnumbers.models.NumbersModel;
 import technokek.hw.listofnumbers.ui.fragments.MainFragment;
 import technokek.hw.listofnumbers.ui.fragments.SecondaryFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewListAdapter.clickerInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openFragment(NumbersModel model) {
+    @Override
+    public void onItemClick(final NumbersModel model) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, new SecondaryFragment(model), "SF")

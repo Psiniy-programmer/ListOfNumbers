@@ -50,7 +50,6 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHo
     }
 
     public interface clickerInterface {
-
         void onItemClick(NumbersModel model);
     }
 }
