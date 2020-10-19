@@ -1,8 +1,10 @@
 package technokek.hw.listofnumbers.models;
 
 public class NumbersModel {
-    private int mColor;
-    private int mValue;
+
+    private final int mColor;
+
+    private final int mValue;
 
     public NumbersModel(int value, int color) {
         mValue = value;

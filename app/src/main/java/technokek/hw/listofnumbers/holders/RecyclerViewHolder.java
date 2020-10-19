@@ -11,7 +11,9 @@ import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter;
 import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
-    private TextView view;
+
+    private final TextView view;
+
     private final RecyclerViewListAdapter.clickerInterface clickAction;
 
     public RecyclerViewHolder(@NonNull View itemView, RecyclerViewListAdapter.clickerInterface clickAction) {

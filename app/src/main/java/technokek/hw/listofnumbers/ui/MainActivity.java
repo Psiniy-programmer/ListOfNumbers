@@ -15,16 +15,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, new MainFragment())
-                .commit();
+
+        if (getSupportFragmentManager().findFragmentByTag("SF") == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new MainFragment())
+                    .commit();
+        }
     }
 
     public void openFragment(NumbersModel model) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new SecondaryFragment(model))
+                .replace(R.id.fragment_container, new SecondaryFragment(model), "SF")
                 .addToBackStack(null)
                 .commit();
     }

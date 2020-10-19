@@ -8,7 +8,9 @@ import java.util.List;
 import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class DataSource {
-    private static final DataSource ourInstance = new DataSource();
+
+    private static DataSource ourInstance = new DataSource();
+
     private final List<NumbersModel> list;
 
     public DataSource() {
@@ -19,11 +21,13 @@ public class DataSource {
     }
 
     public static int getColor(int number) {
-        if (number % 2 != 0) return Color.BLUE;
-        else return Color.RED;
+        return (number % 2 != 0) ? Color.BLUE : Color.RED;
     }
 
     public static DataSource getInstance() {
+        if (ourInstance == null) {
+            ourInstance = new DataSource();
+        }
         return ourInstance;
     }
 

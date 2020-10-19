@@ -14,7 +14,9 @@ import technokek.hw.listofnumbers.holders.RecyclerViewHolder;
 import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
-    private List<NumbersModel> mData;
+
+    private final List<NumbersModel> mData;
+
     private final clickerInterface inter;
 
     public RecyclerViewListAdapter(List<NumbersModel> data, clickerInterface inter) {
@@ -48,6 +50,7 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewHo
     }
 
     public interface clickerInterface {
+
         void onItemClick(NumbersModel model);
     }
 }
