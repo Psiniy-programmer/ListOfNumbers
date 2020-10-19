@@ -2,6 +2,7 @@ package technokek.hw.listofnumbers.ui.fragments;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,9 +70,9 @@ public class MainFragment extends Fragment {
     }
 
     private int getSpanCount() {
-        final int portraitSpanCount = 3;
-        final int landscapeSpanCount = 4;
-        return (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? portraitSpanCount : landscapeSpanCount;
+        return (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? getResources()
+                .getInteger(R.integer.portrait_span_count)
+                : getResources().getInteger(R.integer.landscape_span_count);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
