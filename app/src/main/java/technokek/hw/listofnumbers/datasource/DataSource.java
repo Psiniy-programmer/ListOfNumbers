@@ -24,6 +24,14 @@ public class DataSource {
         }
     }
 
+    public void checkLost(int size) {
+        if (list.size() < size) {
+            for (int i = list.size() + 1; i < size; i++) {
+                list.add(new NumbersModel(i, DataSource.getColor(i)));
+            }
+        }
+    }
+
     public static int getColor(int number) {
         return (number % 2 != 0) ? Color.BLUE : Color.RED;
     }
