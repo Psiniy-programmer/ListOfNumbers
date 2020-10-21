@@ -2,7 +2,6 @@ package technokek.hw.listofnumbers.ui.fragments;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
 import technokek.hw.listofnumbers.R;
 import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter;
 import technokek.hw.listofnumbers.adapters.RecyclerViewListAdapter.clickerInterface;
@@ -25,11 +23,21 @@ import technokek.hw.listofnumbers.models.NumbersModel;
 
 public class MainFragment extends Fragment {
 
+    private int lastNumber;
+
     private List<NumbersModel> numbers;
 
     private RecyclerViewListAdapter.clickerInterface clicker;
 
     private RecyclerViewListAdapter adapter;
+
+    public MainFragment(int count) {
+        this.lastNumber = count;
+    }
+
+    public MainFragment() {
+
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -37,12 +45,7 @@ public class MainFragment extends Fragment {
         numbers = DataSource.getInstance().getData();
         clicker = (clickerInterface) context;
         adapter = new RecyclerViewListAdapter(numbers, model -> clicker.onItemClick(model));
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putAll(outState);
+        checkList();
     }
 
     @Override
@@ -77,5 +80,16 @@ public class MainFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void checkList() {
+        if (numbers.size() < lastNumber) {
+            for (int i = numbers.size(); i < lastNumber; i++) {
+                int nextNumber = numbers.size() + 1;
+                NumbersModel nextModel = new NumbersModel(nextNumber, DataSource.getColor(nextNumber));
+                numbers.add(numbers.size(), nextModel);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 }
